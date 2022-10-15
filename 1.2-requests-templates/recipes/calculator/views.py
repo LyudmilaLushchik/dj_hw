@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+
 
 DATA = {
     'omlet': {
@@ -28,3 +30,13 @@ DATA = {
 #     'ингредиент2': количество2,
 #   }
 # }
+
+def home_view(request):
+    return HttpResponse('Привет, это помощник для приготовления блюд!')
+
+def calculator(request, recipe):
+    servings = int(request.GET.get('servings', 1))
+    context = {'recipe':{}}
+    for ingredient, amount in DATA[recipe].items():
+        context['recipe'][ingredient] = round((amount * servings), 2)
+    return render(request, 'calculator/index.html', context)
