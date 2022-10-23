@@ -16,12 +16,12 @@
             </div>    
             {% endfor %}
         </div>
-        {% if previous_date %}
-            <a href="{% url 'books_filter' previous_date %}">< {{ previous_date|date:"Y-m-d" }}</a>
+        {% if page.has_previous %}
+            <a href="../{{ prev_date|date:'Y-m-d' }}">< {{ prev_date|date:"Y-m-d" }}</a>       
         {% endif %}
-
-        {% if next_date %}
-            <a href="{% url 'books_filter' next_date %}"> {{ next_date|date:"Y-m-d" }} ></a>
+        
+        {% if page.has_next %}
+            <a href="../{{ next_date|date:'Y-m-d' }}"> {{ next_date|date:"Y-m-d" }} ></a>      
         {% endif %}
     </div>
 {% endblock %}
