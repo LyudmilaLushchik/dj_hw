@@ -13,8 +13,15 @@
                 <h2>{{ book.name }}</h2>
                 <p>Автор: {{ book.author }}</p>
                 <p>Дата публикации: {{ book.pub_date|date:"Y-m-d" }}</p>
-            </div>
+            </div>    
             {% endfor %}
         </div>
+        {% if previous_date %}
+            <a href="{% url 'books_filter' previous_date %}">< {{ previous_date|date:"Y-m-d" }}</a>
+        {% endif %}
+
+        {% if next_date %}
+            <a href="{% url 'books_filter' next_date %}"> {{ next_date|date:"Y-m-d" }} ></a>
+        {% endif %}
     </div>
 {% endblock %}
